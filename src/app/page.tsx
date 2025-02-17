@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import AnimatedButton from '@/components/ui/AnimatedButton';
