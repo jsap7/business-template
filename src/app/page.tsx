@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { TypeAnimation } from 'react-type-animation';
 import AnimatedElement from '@/components/ui/AnimatedElement';
 import AnimatedButton from '@/components/ui/AnimatedButton';
 import AnimatedCard from '@/components/ui/AnimatedCard';
 import AnimatedIcon from '@/components/ui/AnimatedIcon';
 import GradientText from '@/components/ui/GradientText';
 import AnimatedBackground from '@/components/ui/AnimatedBackground';
+import CountUp from '@/components/ui/CountUp';
 
 const services = [
   {
@@ -57,6 +59,13 @@ const testimonials = [
   },
 ];
 
+const stats = [
+  { label: 'Years of Experience', value: 25, suffix: '+' },
+  { label: 'Satisfied Clients', value: 1000, suffix: '+' },
+  { label: 'Tax Returns Filed', value: 15000, suffix: '+' },
+  { label: 'Average Savings', value: 3500, prefix: '$' },
+];
+
 export default function Home() {
   return (
     <div className="overflow-hidden">
@@ -69,7 +78,25 @@ export default function Home() {
                 <GradientText preset="primary" direction="diagonal">
                   Financial Clarity
                 </GradientText>{' '}
-                for Your Business and Future
+                for Your{' '}
+                <span className="text-primary">
+                  <TypeAnimation
+                    sequence={[
+                      'Business',
+                      2000,
+                      'Future',
+                      2000,
+                      'Success',
+                      2000,
+                      'Growth',
+                      2000,
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
+                    className="inline-block"
+                  />
+                </span>
               </h1>
             </AnimatedElement>
             <AnimatedElement animation="fade-up" delay={0.2} duration={0.7}>
@@ -87,6 +114,46 @@ export default function Home() {
                 </AnimatedButton>
               </div>
             </AnimatedElement>
+          </div>
+        </div>
+      </AnimatedBackground>
+
+      {/* Stats Section */}
+      <AnimatedBackground pattern="dots" className="bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:max-w-none">
+            <div className="text-center">
+              <AnimatedElement animation="fade-up">
+                <h2 className="font-heading text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                  <GradientText preset="accent">
+                    Trusted by Businesses Nationwide
+                  </GradientText>
+                </h2>
+                <p className="mt-4 text-lg leading-8 text-gray-600">
+                  Our track record speaks for itself
+                </p>
+              </AnimatedElement>
+            </div>
+            <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat, i) => (
+                <AnimatedElement
+                  key={stat.label}
+                  animation="fade-up"
+                  delay={i * 0.1}
+                  className="flex flex-col bg-gray-400/5 p-8"
+                >
+                  <dt className="text-sm font-semibold leading-6 text-gray-600">{stat.label}</dt>
+                  <dd className="order-first text-3xl font-semibold tracking-tight text-gray-900">
+                    <CountUp
+                      end={stat.value}
+                      prefix={stat.prefix}
+                      suffix={stat.suffix}
+                      duration={2.5}
+                    />
+                  </dd>
+                </AnimatedElement>
+              ))}
+            </dl>
           </div>
         </div>
       </AnimatedBackground>
